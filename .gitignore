@@ -6,3 +6,5 @@
 *.iml
 WeakLearnerVisualizer.java
 DataSet.java
+.DS_Store
+.gitattributes
