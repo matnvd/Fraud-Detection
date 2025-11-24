@@ -1,0 +1,8 @@
+*.txt
+.lift/
+.idea/
+!readme.txt
+.noai
+*.iml
+WeakLearnerVisualizer.java
+DataSet.java
