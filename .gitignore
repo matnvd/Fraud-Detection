@@ -1,10 +1,9 @@
-*.txt
-.lift/
+# *.txt
+# .lift/
 .idea/
 !readme.txt
 .noai
 *.iml
-WeakLearnerVisualizer.java
-DataSet.java
+# WeakLearnerVisualizer.java
+# DataSet.java
 .DS_Store
-.gitattributes
