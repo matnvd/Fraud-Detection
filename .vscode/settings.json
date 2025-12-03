@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "lfit/algs4.jar",
+        "lfit/checkstyle-lift.jar"
+    ]
+}
