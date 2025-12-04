@@ -3,15 +3,17 @@ import java.util.Comparator;
 
 public class WeakLearner {
 
+    // instance variables for predictor, sp: sign, dp: dimension, vp: value
     private int sp, vp, dp;
 
+    // custom comparator to sort array by a specific dimension
     private class DatasetComparator implements Comparator<int[]> {
-        int ix;
+        int ix; // index that we are sorting by
 
         public DatasetComparator(int ix) {
             this.ix = ix;
         }
-
+        
         public int compare(int[] arr1, int[] arr2) {
             return Integer.compare(arr1[ix], arr2[ix]);
         }
@@ -27,6 +29,7 @@ public class WeakLearner {
         // num of clusters (each like a point of k dim)
         int k = input[0].length;
 
+        // input that we can re-sort
         int[][] sortableInput = new int[n][k + 1];
 
         double totalWeight = 0;
@@ -41,14 +44,16 @@ public class WeakLearner {
             totalWeight += weights[i];
         }
 
+        // calculates default weight as the middle weight
         double midWeight = totalWeight / 2;
 
         double maxScore = midWeight;
 
+        // goes through and tries partitioning by each dimension
         for(int dim = 0; dim < k; dim++) {
             Arrays.sort(sortableInput, new DatasetComparator(dim));
 
-            // calculates the default score for it the line was at the top and 
+            // calculates the default score for it the line was at the start
             double defaultScore = 0;
             for(int i = 0; i < n; i++) {
                 int accIdx = sortableInput[i][k];

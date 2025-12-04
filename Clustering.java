@@ -61,7 +61,7 @@ public class Clustering {
 
     // use the clusters to reduce the dimensions of an input 
     public int[] reduceDimensions(int[] input) {
-        if (input == null) throw new IllegalArgumentException();
+        if (input == null || input.length != m) throw new IllegalArgumentException();
 
         // add each input to their respective components index in the out[]
         int[] out = new int[k];
