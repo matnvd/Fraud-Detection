@@ -17,7 +17,7 @@
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}",
-            // "args": ["large_training.txt", "large_test.txt", "10", "100"]
+            // "args": ["princeton_training.txt", "princeton_test.txt", "5", "80"]
             "args": "stump_2.txt"
         }
     ]

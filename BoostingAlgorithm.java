@@ -18,7 +18,7 @@ public class BoostingAlgorithm {
 
         if (input.length == 0) throw new IllegalArgumentException();
 
-        if(labels.length != input.length || input[0].length != locations.length) {
+        if (labels.length != input.length || input[0].length != locations.length) {
             throw new IllegalArgumentException();
         }
 
@@ -42,7 +42,7 @@ public class BoostingAlgorithm {
         learners = new Queue<>();
 
         // iterate through each transaction and group together clusters
-        for(int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             // clusters each transaction and adds to new array
             clusteredInput[i] = clusteredTransaction.reduceDimensions(input[i]);
             // weights initialized to 1 / n
@@ -60,15 +60,15 @@ public class BoostingAlgorithm {
     // apply one step of the boosting algorithm 
     public void iterate() {
         // creates a weakLearner
-        WeakLearner learnerIteration = new WeakLearner(clusteredInput, weights, labels);
-        learners.enqueue(learnerIteration);
+        WeakLearner newLearner = new WeakLearner(clusteredInput, weights, labels);
+        learners.enqueue(newLearner);
         double[] tempWeights = weights;
         // total weight of new temp weights to re-normalize later
-        int totalWeight = n;
+        double totalWeight = 0;
 
         // iterate through each of the incorrect weights and double its weight
         for (int i = 0; i < n; i++) {
-            if (learnerIteration.predict(clusteredInput[i]) != labels[i]) {
+            if (newLearner.predict(clusteredInput[i]) != labels[i]) {
                 // double wrong weights
                 tempWeights[i] *= 2;
             }
@@ -80,6 +80,8 @@ public class BoostingAlgorithm {
         for (int i = 0; i < n; i++) {
             tempWeights[i] /= totalWeight;
         }
+
+        weights = tempWeights;
     }
 
     // return the prediction of the learner for a new sample 
@@ -94,13 +96,13 @@ public class BoostingAlgorithm {
         int vote0 = 0;
         int vote1 = 0;
 
-        for(WeakLearner learner : learners) {
-            if(learner.predict(reducedSample) == 0) vote0++;
+        for (WeakLearner learner : learners) {
+            if (learner.predict(reducedSample) == 0) vote0++;
             else vote1++;
         }
         
         // returns majority vote, 0 in case of tie
-        if(vote0 >= vote1) return 0;
+        if (vote0 >= vote1) return 0;
         else return 1;
     }
 

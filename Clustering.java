@@ -96,7 +96,7 @@ public class Clustering {
                     centers[i] = randPt;
 
                     // makes sure its far enough away from all other centers
-                    minDist = Double.MAX_VALUE;
+                    minDist = Double.POSITIVE_INFINITY;
                     for (int j = 0; j < i; j++) {
                         double dist = centers[i].distanceTo(centers[j]);
                         if (dist < minDist) minDist = dist;
