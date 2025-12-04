@@ -1,19 +1,32 @@
 import edu.princeton.cs.algs4.Point2D;
 
 public class BoostingAlgorithm {
-
+    private int[][] clusteredInput;
+    
     // create the clusters and initialize your data structures
-    public BoostingAlgorithm(int[][] input, int[] labels, Point2D[] locations, int k)
+    public BoostingAlgorithm(int[][] input, int[] labels, Point2D[] locations, int k) {
+
+        clusteredInput = new int[input.length][k];
+        for(int i = 0; i < )
+    }
 
     // return the current weight of the ith point
-    public double weightOf(int i)
+    public double weightOf(int i) {
+
+    }
 
     // apply one step of the boosting algorithm 
-    public void iterate()
+    public void iterate() {
+
+    }
 
     // return the prediction of the learner for a new sample 
-    public int predict(int[] sample)
+    public int predict(int[] sample) {
+
+    }
 
     // unit testing
-    public static void main(String[] args)
+    public static void main(String[] args) {
+        System.out.println("test");
+    }
 }
