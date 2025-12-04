@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "WeakLearnerVisualizer",
+            "request": "launch",
+            "mainClass": "WeakLearnerVisualizer",
+            "projectName": "Fraud-Detection_2ae9a2c3"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}",

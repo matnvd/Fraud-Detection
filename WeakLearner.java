@@ -29,6 +29,8 @@ public class WeakLearner {
 
         int[][] sortableInput = new int[n][k + 1];
 
+        double totalWeight = 0;
+
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < k; j++) {
                 sortableInput[i][j] = input[i][j];
@@ -36,15 +38,18 @@ public class WeakLearner {
             
             // kth column stores initial order
             sortableInput[i][k] = i;
+            totalWeight += weights[i];
         }
 
-        double maxScore = 0;
+        double midWeight = totalWeight / 2;
 
-        for(int dim = 0; dim < n; dim++) {
+        double maxScore = midWeight;
+
+        for(int dim = 0; dim < k; dim++) {
             Arrays.sort(sortableInput, new DatasetComparator(dim));
 
             // calculates the default score for it the line was at the top and 
-            int defaultScore = 0;
+            double defaultScore = 0;
             for(int i = 0; i < n; i++) {
                 int accIdx = sortableInput[i][k];
                 if(labels[accIdx] == 1) defaultScore += weights[accIdx];
@@ -52,7 +57,7 @@ public class WeakLearner {
 
             // iterates through each point and calculates a new score for if there
             // was a partition through that point at the current dimension
-            int curScore = defaultScore;
+            double curScore = defaultScore;
 
             for(int i = 0; i < n; i++) {
                 // new point setting partition
@@ -61,12 +66,18 @@ public class WeakLearner {
                 // 
                 if(labels[accIdx] == 0) curScore += weights[accIdx];
                 else curScore -= weights[accIdx];
+
+                if(i < n - 1 && sortableInput[i+1][dim] == sortableInput[i][dim]) continue;
+
+                // System.out.println(dim + ", " + accIdx + ", " + sortableInput[i][dim] + ", " + sortableInput[i+1][dim] + ", " + curScore);
                 
-                int newMax = defaultScore + Math.abs(curScore - defaultScore);
+                double newMax = midWeight + Math.abs(curScore - midWeight);
+                // System.out.println(newMax + ", " + midWeight + ", " + maxScore);
                 if(newMax > maxScore) {
                     dp = dim;
                     vp = sortableInput[i][dim];
                     sp = curScore < defaultScore ? 1 : 0;
+                    maxScore = newMax;
                 }
             }
         }
