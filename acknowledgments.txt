@@ -24,7 +24,7 @@ Programming Assignment 7:  Fraud Detection
  ******************************************************************************/
 
 [list the help received here]
-
+none
 
 /******************************************************************************
  *  Write and sign the following student acknowledgment of original work.
@@ -37,4 +37,8 @@ Programming Assignment 7:  Fraud Detection
 
 [write and sign the pledge here]
 
+This programming assignment represents my own work in accordance with University
+regulations.  /s/ Mathias Nguyen-Van-Duong
 
+This programming assignment represents my own work in accordance with University
+regulations.  /s/ Vishrut Thoutam
