@@ -5,7 +5,6 @@ Programming Assignment 7: Fraud Detection
  **************************************************************************** */
 
 First, we created an EdgeWeightedGraph instance with the number of nodes being
-the number of locations in the dataset. We then iterated through a nested loop
 to add edges between each unique pair of locations. We used the Point2D distanceTo
 method to compute the weights for each edge. We then initialized a KruskalMST
 class with the given EdgeWeightedGraph and moved the list of edges into an
@@ -51,6 +50,27 @@ and each point in order to find the max in this fashion.
 
       k          T         test accuracy       time (seconds)
    --------------------------------------------------------------------------
+      5          80             0.86875            0.262
+      5          160            0.86875            0.405
+      10         80             0.96               0.375
+      20         80             0.96375            0.482
+      40         80             0.96875            0.682
+      80         80             0.95875            1.017
+      60         80             0.95625            0.875
+      60         160            0.9675             1.581
+      50         320            0.9775             2.578
+      60         320            0.9825             2.919
+      60         640            0.98625            5.695
+      60         1280           0.98625            11.407
+      60         480            0.98625            4.324
+      60         400            0.98125            3.672
+      60         440            0.98               3.982
+      60         460            0.98125            4.228
+      60         470            0.98625            4.305
+      60         465            0.98125            4.256
+      60         467            0.9825             4.307
+      60         469            0.9825             4.331
+      
 
 /* *****************************************************************************
  *  Find the values of k and T that maximize the test data set accuracy,
@@ -61,7 +81,19 @@ and each point in order to find the max in this fashion.
  *   3. Why a k that is too small or too big leads to low test accuracy.
  **************************************************************************** */
 
-
+1. I started off at the base values of k = 5 and T = 80. I would then run the test
+to see the test accuracy of the model. I would then keep doubling T until the test
+accuracy of the test plateaud. Once it did, I would double k and repeat the same
+process with T. Once the test accuracy plateaud from both increasing k too, I would
+find the exact value of T for the respective k at which it started plateauing at,
+which in this case was T = 470 for k = 60.
+2. A small value of T leads to low test accuracy because not enough iterations
+done means that the algorithm hasn't had enough time to adjust the weights
+properly to get the highest accuracy.
+3. Having a k too small means that you're not clustering enough and the data is
+really noisy and the boosting algorithm may accidentally amplify that noise.
+Having too few clusters means that you're collapsing more diverse data points
+together and losing signal and underfit the data.
 
 /* *****************************************************************************
  *  List any other comments here. Feel free to provide any feedback
