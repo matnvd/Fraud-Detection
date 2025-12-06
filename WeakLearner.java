@@ -89,12 +89,12 @@ public class WeakLearner {
                 // stores original index of the data point
                 int accIdx = sortableInput[i][k];
                 
-                // now, we move the partition vp to this point
-                // since one point gets moved to the other side, we calculate new 
+                // now, we move the partition up to this point
+                // since one point gets moved to the other side, we calculate new
                 // score by either adding or subracting from the previous score
 
                 // current point switch to lower side, if value matches, add weight
-                if (labels[accIdx] == 0) curScore += weights[accIdx]; 
+                if (labels[accIdx] == 0) curScore += weights[accIdx];
                 else curScore -= weights[accIdx]; // if point is now wrong, subtract
 
                 // if next point has same value, do not evaluate score
